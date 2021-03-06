@@ -16,25 +16,48 @@ int lengthofall [6][4] = {
                             {3, 3, 3, 3},
                             {3, 3, 3, 3}
                           };
-// {0, 0, 0 , 0};
-// string hatcomp = "_===_";
-// lengthofall0 = ((hatcomp.length()); 
+
+int getrandomcase(){
+    int smc = 0;
+    for (size_t i = 0; i < 8; i++)
+    {
+        int temp = ((rand() * 10) % 4) + 1;
+        smc *= 10;
+        smc += temp;
+    }
+    return smc;
+    
+}
 
 
-
-
-//3
+//3 tests
 TEST_CASE("Don't initialize unnecessary"){
-	int i = rand()*(MAX8-MIN8);
+	int i = rand() * MIN8;
+    
+    // for positive lower case
 	CHECK_THROWS(snowmanCreation(i));
     i += MAX8;
+
+    // for positive larger case
+    CHECK_THROWS(snowmanCreation(i));
+    i = -1 * getrandomcase();
+
+    //for negative case
     CHECK_THROWS(snowmanCreation(i));
     i *= -1;
-    CHECK_THROWS(snowmanCreation(i));
+
+    //for cases with non optional numbers
+    for (size_t j = 0; j < 8; j++)
+    {
+        int k = pow(10, i);
+        int q = (((rand() * k) / (k /10)) % 4 + 1) * (k);
+        int temp = i + q; 
+        CHECK_THROWS(snowmanCreation(temp));
+    }
 }
 
 TEST_CASE("Good base initialization"){
-    int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
+    int smc = getrandomcase(); // snowman case
     string sms = snowmanCreation(smc); // snowman string
     // string nosecomp = NULL; // a string to compare
     int div = 1;
@@ -69,6 +92,8 @@ TEST_CASE("Good base initialization"){
     mul *= 10;
     nose %= mul;
 
+    string hatcomp = NULL;
+
     switch (hat)
     {
     case 1:
@@ -86,7 +111,7 @@ TEST_CASE("Good base initialization"){
     default:
         CHECK(false);
     }
-    int hatlength = lengthofall[1][hat]; // hatcomp.length(); 
+    int hatlength = lengthofall[0][hat]; // hatcomp.length(); 
     for (size_t i = 0; i < hatlength; i++)
     {
         CHECK((hatcomp[i]==sms[i]));
@@ -265,16 +290,3 @@ TEST_CASE("Good base initialization"){
     }
     
 }
-
-
-// TEST_CASE("Good snowman code") {
-//     CHECK(nospaces(snowman(11114411)) == nospaces("_===_\n(.,.)\n( : )\n( : )"));
-//     /* Add more checks here */
-// }
-
-// TEST_CASE("Bad snowman code") {
-//     CHECK_THROWS(snowman(555));
-//     /* Add more checks here */
-// }
-
-
