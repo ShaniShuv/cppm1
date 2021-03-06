@@ -10,10 +10,11 @@ using namespace std;
 #define MAX8 44444444
 #endif
 
-/*
-int lengthofall [8][4] = {
-                            {5, 11, 11, 11},
-*/
+int lengthofall [8][4] = {{5, 11, 11, 11}, {1, 1, 1, 0}, }
+// {0, 0, 0 , 0};
+// string hatcomp = "_===_";
+// lengthofall0 = ((hatcomp.length()); 
+
 
 
 
@@ -61,33 +62,92 @@ TEST_CASE("Good nose initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string nosecomp = NULL; // a string to compare
-    int hat = smc / 10000000;
-    string hatcomp = NULL; // a string to compare
+     int hat = smc / 10000000;
+    // string hatcomp = NULL; // a string to compare
     int nose = smc / 1000000;
     nose %= 10;
-    switch (hat)
+    // switch (hat)
+    // {
+    // case 1:
+    //     hatcomp = "_===_";
+    //     break;
+    // case 2:
+    //     hatcomp = " ___ \n.....";
+    //     break;
+    // case 3:
+    //     hatcomp = "  _  \n /_\ ";
+    //     break;
+    // case 4:
+    //     hatcomp = " ___ \n(_*_)";
+    //     break;
+    // default:
+    //     CHECK(false);
+    // }
+    int sofarlength = lengthofall[0][hat]; //hatcomp.length(); 
+
+    switch (nose)
     {
     case 1:
-        hatcomp = "_===_";
+        CHECK((sms[sofarlength] == ','));
         break;
     case 2:
-        hatcomp = " ___ \n.....";
+        CHECK((sms[sofarlength] == '.'));
         break;
     case 3:
-        hatcomp = "  _  \n /_\ ";
+        CHECK((sms[sofarlength] == '_'));
         break;
     case 4:
-        hatcomp = " ___ \n(_*_)";
         break;
     default:
         CHECK(false);
     }
-    int hatlength = hatcomp.length(); //lengthofall[1][hat]; 
-    for (size_t i = 0; i < hatlength; i++)
+}
+
+TEST_CASE("Good nose initialization"){
+    int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
+    string sms = snowmanCreation(smc); // snowman string
+    string nosecomp = NULL; // a string to compare
+    int hat = smc / 10000000;
+    // string hatcomp = NULL; // a string to compare
+    int nose = smc / 1000000;
+    nose %= 10;
+    int nose = smc / 1000000;
+    nose %= 10;
+    // switch (hat)
+    // {
+    // case 1:
+    //     hatcomp = "_===_";
+    //     break;
+    // case 2:
+    //     hatcomp = " ___ \n.....";
+    //     break;
+    // case 3:
+    //     hatcomp = "  _  \n /_\ ";
+    //     break;
+    // case 4:
+    //     hatcomp = " ___ \n(_*_)";
+    //     break;
+    // default:
+    //     CHECK(false);
+    // }
+    int sofarlength = lengthofall[0][hat] + lengthofall[1][nose]; //hatcomp.length(); 
+
+    switch (nose)
     {
-        CHECK((hatcomp[i]==sms[i]));
+    case 1:
+        CHECK((sms[sofarlength] == ','));
+        break;
+    case 2:
+        CHECK((sms[sofarlength] == '.'));
+        break;
+    case 3:
+        CHECK((sms[sofarlength] == '_'));
+        break;
+    case 4:
+        break;
+    default:
+        CHECK(false);
     }
-    
 }
 
 
