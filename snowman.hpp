@@ -1,4 +1,4 @@
 #include <string>
 using namespace std;
 
-string snowmanCreation(int i);
+string snowmanCreation(int t);
