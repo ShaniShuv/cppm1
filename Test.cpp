@@ -39,7 +39,7 @@ TEST_CASE("Good hat initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string hatcomp = NULL; // a string to compare
-    int div = pow(10, 8);
+    int div = pow(10, 7);
     int hat = smc / div;
     switch (hat)
     {
@@ -70,7 +70,7 @@ TEST_CASE("Good nose initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string nosecomp = NULL; // a string to compare
-    int div = pow(10, 7);
+    int div = pow(10, 6);
     int nose = smc / div;
     div *= 10;
     int hat = smc / div;  
@@ -99,7 +99,7 @@ TEST_CASE("Good left eye initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string nosecomp = NULL; // a string to compare
-    int div = pow(10, 6);
+    int div = pow(10, 5);
     int lefteye = smc / div;
     div *= 10;
     int nose = smc / div;
@@ -136,7 +136,7 @@ TEST_CASE("Good right eye initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string nosecomp = NULL; // a string to compare
-    int div = pow(10, 5);
+    int div = pow(10, 4);
     int righteye = smc / div;
     div *= 10;
     int lefteye = smc / div;
@@ -176,7 +176,7 @@ TEST_CASE("Good left arm initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string nosecomp = NULL; // a string to compare
-    int div = pow(10, 4);
+    int div = pow(10, 3);
     int leftarm = smc / div;
     div *= 10;
     int righteye = smc / div;
@@ -219,7 +219,7 @@ TEST_CASE("Good right arm initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string nosecomp = NULL; // a string to compare
-    int div = pow(10, 3);
+    int div = pow(10, 2);
     int rightarm = smc / div;
     div *= 10;
     int leftarm = smc / div;
@@ -266,7 +266,7 @@ TEST_CASE("Good torso initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     string nosecomp = NULL; // a string to compare
-    int div = 100;
+    int div = 10;
     int torso = smc / div;
     div *= 10;
     int rightarm = smc / div;
@@ -326,7 +326,7 @@ TEST_CASE("Good base initialization"){
     int smc = rand()*(MAX8-MIN8) + MIN8; // snowman case
     string sms = snowmanCreation(smc); // snowman string
     // string nosecomp = NULL; // a string to compare
-    int div = 10;
+    int div = 1;
     int base = smc / div;
     div *= 10;
     int torso = smc / div;
