@@ -5,7 +5,7 @@ using namespace std;
 const int MIN8 = 11111111;
 const int MAX8 = 44444444;
 
-
+namespace ariel{
 string snowmanCreation(int t){
     
     string p = "Not optional";
@@ -25,3 +25,4 @@ string snowmanCreation(int t){
     return p;
     
 }
+};

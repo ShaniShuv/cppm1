@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <cmath>
 using namespace std;
+using namespace ariel;
 
 
 const int MIN8 = 11111111;
@@ -56,7 +57,7 @@ TEST_CASE("Don't initialize unnecessary"){
     }
 }
 
-TEST_CASE("Good base initialization"){
+TEST_CASE("Good initialization"){
     int smc = getrandomcase(); // snowman case
     string sms = snowmanCreation(smc); // snowman string
     // string nosecomp = NULL; // a string to compare
@@ -92,7 +93,7 @@ TEST_CASE("Good base initialization"){
     mul *= 10;
     nose %= mul;
 
-    string hatcomp = NULL;
+    string hatcomp = "";
 
     switch (hat)
     {
@@ -103,7 +104,7 @@ TEST_CASE("Good base initialization"){
         hatcomp = " ___ \n.....";
         break;
     case 3:
-        hatcomp = "  _  \n /_\ ";
+        hatcomp = "  _  \n /_\\ ";
         break;
     case 4:
         hatcomp = " ___ \n(_*_)";
@@ -198,7 +199,7 @@ TEST_CASE("Good base initialization"){
         CHECK((sms[sofarlength] == '\\'));
         break;
     case 3:
-        CHECK((sms[sofarlength] == '\/'));
+        CHECK(sms[sofarlength] == '/');
         break;
     case 4:
         break;
@@ -216,7 +217,7 @@ TEST_CASE("Good base initialization"){
         CHECK((sms[sofarlength] == '>'));
         break;
     case 2:
-        CHECK((sms[sofarlength] == '\/'));
+        CHECK((sms[sofarlength] == '/'));
         break;
     case 3:
         CHECK((sms[sofarlength] == '\\'));
@@ -233,7 +234,7 @@ TEST_CASE("Good base initialization"){
 
     sofarlength = lengthofall[0][hat] + lengthofall[1][nose] + lengthofall[2][lefteye] + lengthofall[2][righteye] + lengthofall[3][leftarm] + lengthofall[3][rightarm]; //hatcomp.length(); 
 
-    string torsocomp = NULL;
+    string torsocomp = "";
 
     switch (torso)
     {
@@ -264,7 +265,7 @@ TEST_CASE("Good base initialization"){
 
     sofarlength = lengthofall[0][hat] + lengthofall[1][nose] + lengthofall[2][lefteye] + lengthofall[2][righteye] + lengthofall[3][leftarm] + lengthofall[3][rightarm] + lengthofall[5][torso]; //hatcomp.length(); 
 
-    string basecomp = NULL;
+    string basecomp = "";
 
     switch (base)
     {
