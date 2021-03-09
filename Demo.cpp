@@ -12,13 +12,13 @@
 using namespace std;
 
 int main() {
-	cout << ariel::snowmanCreation(11114411) << endl;   /* Should print:
+	cout << ariel::snowman(11114411) << endl;   /* Should print:
 _===_
 (.,.)
 ( : )
 ( : )
 	*/
-	cout << ariel::snowmanCreation(33232124) << endl;   /* Should print:
+	cout << ariel::snowman(33232124) << endl;   /* Should print:
    _
   /_\
 \(o_O)
@@ -26,7 +26,7 @@ _===_
  (   )
 	*/
 	try {
-		cout << ariel::snowmanCreation(5) << endl;   // Exception - not a valid code
+		cout << ariel::snowman(5) << endl;   // Exception - not a valid code
 	} catch (exception& ex) {
 	 	cout << "   caught exception: " << ex.what() << endl;  // should print "Invalid code '5'"
 	}

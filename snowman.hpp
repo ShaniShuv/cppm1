@@ -1,6 +1,6 @@
 #include <string>
 using namespace std;
  namespace ariel{
-string snowmanCreation(int t);
+string snowman(int smc);
 
 };

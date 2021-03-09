@@ -9,285 +9,113 @@ using namespace ariel;
 const int MIN8 = 11111111;
 const int MAX8 = 44444444;
 
-int lengthofall [6][4] = {
+std:: array <string, 6, 4> = {
                             {5, 11, 11, 11}, // hat's lengths sorted bt cases
-                            {1, 1, 1, 0}, 
-                            {1, 1, 1, 1},  // although in all eye cases it's the same I rather this order 
-                            {1, 1, 1, 0}, 
-                            {3, 3, 3, 3},
-                            {3, 3, 3, 3}
-                          };
+                            {1, 1, 1, 0}, // nose option
+                            {1, 1, 1, 1},  // although in all eye cases it's the same I rather this order
+                            {1, 1, 1, 0},
+                            {3, 3, 3, 3}, // toros option
+                            {3, 3, 3, 3} // base option
+                        };
+const string alloftheparts [8][5] = {
+                            {"hat ", "_===_", " ___ \n.....", "  _  \n /_\\ ",  " ___ \n(_*_)"}, 
+                            {"nose ", ",", ".", "_", ""},
+                            {"left eye", ".", "o", "O", "-"},
+                            {"right eye", ".", "o", "O", "-"},
+                            {"left arm ", "<", "\\" , "/", ""},
+                            {"right arm ", ">", "/", "\\", ""},
+                            {"torso ", " : ", "] [" ,  "> <", "   "},
+                            {"base ", " : ", " ", "___", "   "},
+                           };
 
 int getrandomcase(){
     int smc = 0;
     for (size_t i = 0; i < 8; i++)
     {
-        int temp = ((rand() * 10) % 4) + 1;
+        int temp = ((rand() % 10) % 4) + 1;
         smc *= 10;
         smc += temp;
     }
     return smc;
-    
 }
 
 
 //3 tests
 TEST_CASE("Don't initialize unnecessary"){
-	int i = rand() * MIN8;
+    int i = getrandomcase();
+    for (size_t j = 0; j < 7; j++)
+    {
+        i /= 10;
+        // for positive lower case
+        CHECK_THROWS(snowman(i));
+    }
     
-    // for positive lower case
-	CHECK_THROWS(snowmanCreation(i));
-    i += MAX8;
+    i += MAX8 + 1;
 
     // for positive larger case
-    CHECK_THROWS(snowmanCreation(i));
+    CHECK_THROWS(snowman(i));
     i = -1 * getrandomcase();
 
     //for negative case
-    CHECK_THROWS(snowmanCreation(i));
+    CHECK_THROWS(snowman(i));
     i *= -1;
 
     //for cases with non optional numbers
     for (size_t j = 0; j < 8; j++)
     {
-        int k = pow(10, i);
-        int q = (((rand() * k) / (k /10)) % 4 + 1) * (k);
-        int temp = i + q; 
-        CHECK_THROWS(snowmanCreation(temp));
+        int k = pow(10, j);
+
+        // int q = 
+        int ruin = (((rand() % 10) % 3) + 4) * k;
+        // at first we get a random number < 10 
+        // then I chose to take a num mod 3 to be sure I ruin the good case of i 
+        // then I added 4 so this number would be 4 or 5 or 6 
+        // then no matter which number in {h, n , l, r, x, w, t, b} get it, we would get a wrong case
+
+        int temp = i + ruin; 
+        CHECK_THROWS(snowman(temp));
     }
+
 }
 
 TEST_CASE("Good initialization"){
     int smc = getrandomcase(); // snowman case
-    string sms = snowmanCreation(smc); // snowman string
-    // string nosecomp = NULL; // a string to compare
-    int div = 1;
-    int base = smc / div;
-    div *= 10;
-    int torso = smc / div;
-    div *= 10;
-    int rightarm = smc / div;
-    div *= 10;
-    int leftarm = smc / div;
-    div *= 10;
-    int righteye = smc / div;
-    div *= 10;
-    int lefteye = smc / div;
-    div *= 10;
-    int nose = smc / div;
-    div *= 10;
-    int hat = smc / div; 
+    string sms = snowman(smc); // snowman string
 
-    int mul = 10;
-    base %= mul;
-    mul *= 10;
-    torso %= mul;
-    mul *= 10;
-    rightarm %= mul;
-    mul *= 10;
-    leftarm %= mul;
-    mul *= 10;
-    righteye %= mul;
-    mul *= 10;
-    lefteye %= mul;
-    mul *= 10;
-    nose %= mul;
+    int sma [8];
+    int div = pow(10, 7);
 
-    string hatcomp = "";
-
-    switch (hat)
+    for (size_t i = 0; i < 8; i++)
     {
-    case 1:
-        hatcomp = "_===_";
-        break;
-    case 2:
-        hatcomp = " ___ \n.....";
-        break;
-    case 3:
-        hatcomp = "  _  \n /_\\ ";
-        break;
-    case 4:
-        hatcomp = " ___ \n(_*_)";
-        break;
-    default:
-        CHECK(false);
-    }
-    int hatlength = lengthofall[0][hat]; // hatcomp.length(); 
-    for (size_t i = 0; i < hatlength; i++)
-    {
-        CHECK((hatcomp[i]==sms[i]));
+        int temp = smc / div;
+        temp %= 10;
+        sma[i] = temp;
+        div /= 10;
     }
 
-    CHECK((sms[hatlength] == '\n'));
+    int startcomp = 0; // this counter count the chars that passed so far
 
-    int sofarlength = lengthofall[0][hat]; //hatcomp.length(); 
-
-    switch (nose)
+    for (size_t i = 0; i < 8; i++)
     {
-    case 1:
-        CHECK((sms[sofarlength] == ','));
-        break;
-    case 2:
-        CHECK((sms[sofarlength] == '.'));
-        break;
-    case 3:
-        CHECK((sms[sofarlength] == '_'));
-        break;
-    case 4:
-        break;
-    default:
-        CHECK(false);
+        string comps = alloftheparts[i][sma[i]]; // this string represent the right string of the part we check 
+        
+        int thiscomplength = comps.length(); // show how long this part check sould be
+        
+        if(sms.length() < thiscomplength + startcomp){
+            // if the string we got is too short then we sould fail
+            // and we souldn't go to the loop because we would get out of bound
+            CHECK(false);
+            break;
+        }
+
+        for (size_t j = 0; j < thiscomplength; j++)
+        {
+            CHECK((comps[j]==sms[j + startcomp]));
+           
+        }
+        startcomp += thiscomplength; // we add the length of the check we passed
+        CHECK((sms[startcomp] == '\n'));
+        startcomp += 1 ; // for the '\n'
     }
-
-    CHECK((sms[sofarlength] == '\n'));
-
-    sofarlength = lengthofall[0][hat] + lengthofall[1][nose]; //hatcomp.length(); 
-
-    switch (lefteye)
-    {
-    case 1:
-        CHECK((sms[sofarlength] == '.'));
-        break;
-    case 2:
-        CHECK((sms[sofarlength] == 'o'));
-        break;
-    case 3:
-        CHECK((sms[sofarlength] == 'O'));
-        break;
-    case 4:
-        CHECK((sms[sofarlength] == '-'));
-        break;
-    default:
-        CHECK(false);
-    }
-
-    
-    CHECK((sms[sofarlength] == '\n'));
-
-    sofarlength = lengthofall[0][hat] + lengthofall[1][nose] + lengthofall[2][lefteye]; //hatcomp.length(); 
-
-    switch (righteye)
-    {
-    case 1:
-        CHECK((sms[sofarlength] == '.'));
-        break;
-    case 2:
-        CHECK((sms[sofarlength] == 'o'));
-        break;
-    case 3:
-        CHECK((sms[sofarlength] == 'O'));
-        break;
-    case 4:
-        CHECK((sms[sofarlength] == '-'));
-        break;
-    default:
-        CHECK(false);
-    }
-
-
-    CHECK((sms[sofarlength] == '\n'));
-
-
-    sofarlength = lengthofall[0][hat] + lengthofall[1][nose] + lengthofall[2][lefteye] + lengthofall[2][righteye]; //hatcomp.length(); 
-
-    switch (leftarm)
-    {
-    case 1:
-        CHECK((sms[sofarlength] == '<'));
-        break;
-    case 2:
-        CHECK((sms[sofarlength] == '\\'));
-        break;
-    case 3:
-        CHECK(sms[sofarlength] == '/');
-        break;
-    case 4:
-        break;
-    default:
-        CHECK(false);
-    }
-
-    CHECK((sms[sofarlength] == '\n'));
-
-    sofarlength = lengthofall[0][hat] + lengthofall[1][nose] + lengthofall[2][lefteye] + lengthofall[2][righteye] + lengthofall[3][leftarm]; //hatcomp.length(); 
-
-    switch (rightarm)
-    {
-    case 1:
-        CHECK((sms[sofarlength] == '>'));
-        break;
-    case 2:
-        CHECK((sms[sofarlength] == '/'));
-        break;
-    case 3:
-        CHECK((sms[sofarlength] == '\\'));
-        break;
-    case 4:
-        break;
-    default:
-        CHECK(false);
-    }
-
-
-    CHECK((sms[sofarlength] == '\n'));
-
-
-    sofarlength = lengthofall[0][hat] + lengthofall[1][nose] + lengthofall[2][lefteye] + lengthofall[2][righteye] + lengthofall[3][leftarm] + lengthofall[3][rightarm]; //hatcomp.length(); 
-
-    string torsocomp = "";
-
-    switch (torso)
-    {
-    case 1:
-        torsocomp = " : ";
-        break;
-    case 2:
-        torsocomp = "] [";
-        break;
-    case 3:
-        torsocomp = "> <";
-        break;
-    case 4:
-        torsocomp = "   ";
-        break;
-    default:
-        CHECK(false);
-    }
-
-    for (size_t i = 0; i < lengthofall[4][torso]; i++)
-    {
-        CHECK((sms[sofarlength+i] == torsocomp[i]));
-    }
-    
-
-    CHECK((sms[sofarlength] == '\n'));
-
-
-    sofarlength = lengthofall[0][hat] + lengthofall[1][nose] + lengthofall[2][lefteye] + lengthofall[2][righteye] + lengthofall[3][leftarm] + lengthofall[3][rightarm] + lengthofall[5][torso]; //hatcomp.length(); 
-
-    string basecomp = "";
-
-    switch (base)
-    {
-    case 1:
-        basecomp = " : ";
-        break;
-    case 2:
-        basecomp = "] [";
-        break;
-    case 3:
-        basecomp = "> <";
-        break;
-    case 4:
-        basecomp = "   ";
-        break;
-    default:
-        CHECK(false);
-    }
-
-    for (size_t i = 0; i < lengthofall[4][torso]; i++)
-    {
-        CHECK((sms[sofarlength+i] == basecomp[i]));
-    }
-    
+    CHECK (sms.length() == startcomp);
 }
