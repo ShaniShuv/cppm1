@@ -2,6 +2,7 @@
 #include "snowman.hpp"
 #include <stdexcept>
 #include <cmath>
+#include <array>
 using namespace std;
 using namespace ariel;
 
@@ -9,24 +10,35 @@ using namespace ariel;
 const int MIN8 = 11111111;
 const int MAX8 = 44444444;
 
-std:: array <string, 6, 4> = {
-                            {5, 11, 11, 11}, // hat's lengths sorted bt cases
-                            {1, 1, 1, 0}, // nose option
-                            {1, 1, 1, 1},  // although in all eye cases it's the same I rather this order
-                            {1, 1, 1, 0},
-                            {3, 3, 3, 3}, // toros option
-                            {3, 3, 3, 3} // base option
-                        };
-const string alloftheparts [8][5] = {
-                            {"hat ", "_===_", " ___ \n.....", "  _  \n /_\\ ",  " ___ \n(_*_)"}, 
-                            {"nose ", ",", ".", "_", ""},
-                            {"left eye", ".", "o", "O", "-"},
-                            {"right eye", ".", "o", "O", "-"},
-                            {"left arm ", "<", "\\" , "/", ""},
-                            {"right arm ", ">", "/", "\\", ""},
-                            {"torso ", " : ", "] [" ,  "> <", "   "},
-                            {"base ", " : ", " ", "___", "   "},
-                           };
+// array<array<int, 6>, 4> = {
+//                             {5, 11, 11, 11}, // hat's lengths sorted bt cases
+//                             {1, 1, 1, 0}, // nose option
+//                             {1, 1, 1, 1},  // although in all eye cases it's the same I rather this order
+//                             {1, 1, 1, 0},
+//                             {3, 3, 3, 3}, // toros option
+//                             {3, 3, 3, 3} // base option
+//                         };
+// const string alloftheparts [8][5] = {
+// std::array <std::array <string, 8>, 5> alloftheparts = {{ 
+//                             {{"hat ", "_===_", " ___ \n.....", "  _  \n /_\\ ",  " ___ \n(_*_)"}}, 
+//                             {"nose ", ",", ".", "_", ""}},
+//                             {{"left eye", ".", "o", "O", "-"}},
+//                             {{"right eye", ".", "o", "O", "-"}},
+//                             {{"left arm ", "<", "\\" , "/", ""}},
+//                             {{"right arm ", ">", "/", "\\", ""}},
+//                             {{"torso ", " : ", "] [" ,  "> <", "   "}},
+//                             {{"base ", " : ", " ", "___", "   "}}
+//                            }};
+
+const std::array <std::array <string, 5>, 8> alloftheparts = {{
+    {"hat ", "_===_", " ___ \n.....", "  _  \n /_\\ ",  " ___ \n(_*_)"},
+    {"nose ", ",", ".", "_", ""},
+    {"left eye", ".", "o", "O", "-"},
+    {"right eye", ".", "o", "O", "-"},
+    {"left arm ", "<", "\\" , "/", ""},
+    {"right arm ", ">", "/", "\\", ""},
+    {"torso ", " : ", "] [" ,  "> <", "   "},
+    {"base ", " : ", " ", "___", "   "}}};
 
 int getrandomcase(){
     int smc = 0;
