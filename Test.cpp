@@ -70,7 +70,7 @@ TEST_CASE("Good initialization"){
     int smc = getrandomcase(); // random snowman case
     string sms = snowman(smc); // snowman string
 
-    int sma [8];
+    std::array<int, 8> sma;
     int div = pow(10, 7);
 
     for (size_t i = 0; i < 8; i++)
