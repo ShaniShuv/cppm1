@@ -16,15 +16,16 @@ const int EIGHT = 8;
 const int TEN = 10;
 
 const std::array<string, 4> hats = { "_===_", " ___ \n.....", "  _  \n /_\\ ",  " ___ \n(_*_)"};
-const std::array<string, 4> upleftarms = {"", "\\", "", ""};
+const std::array<string, 4> upleftarms = {" ", "\\", "", ""};
 const std::array<string, 4> lefteyes = { ".", "o", "O", "-"};
-const std::array<string, 4> noses = { ",", ".", "_", ""};
+const std::array<string, 4> noses = { ",", ".", "_", " "};
 const std::array<string, 4> righteyes = { ".", "o", "O", "-"};
 const std::array<string, 4> uprightarms = {"", "/", "", ""};
 const std::array<string, 4> lowleftarms = {"<", "" , "/", ""};
 const std::array<string, 4> torsos =  {" : ", "] [" ,  "> <", "   "};
 const std::array<string, 4> lowrightarms = {">", "", "\\", ""};
-const std::array<string, 4> bases = {" : ", "\" \"  ", "___", "   "};
+// const std::array<string, 4> bases = {" : ", " ", "___", "   "};
+const std::array<string, 4> bases = {" : ", "\" \"", "___", "   "};
 
 
 #include <iostream>
