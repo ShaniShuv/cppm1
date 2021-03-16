@@ -21,9 +21,9 @@ int main(){
     
     for (size_t i = 0; i < 6; i++)
     {
-        int smc = getrandomcase();
-        string sms = ariel::snowman(smc);
-        cout << smc;
+        // int smc = getrandomcase();
+        // string sms = ariel::snowman(smc);
+        // cout << smc;
     }
 }
 
