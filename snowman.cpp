@@ -16,12 +16,12 @@ const int EIGHT = 8;
 const int TEN = 10;
 
 const std::array<string, 4> hats = { "_===_", " ___ \n.....", "  _  \n /_\\ ",  " ___ \n(_*_)"};
-const std::array<string, 4> upleftarms = {" ", "\\", "", ""};
+const std::array<string, 4> upleftarms = {" ", "\\", " ", " "};
 const std::array<string, 4> lefteyes = { ".", "o", "O", "-"};
 const std::array<string, 4> noses = { ",", ".", "_", " "};
 const std::array<string, 4> righteyes = { ".", "o", "O", "-"};
 const std::array<string, 4> uprightarms = {"", "/", "", ""};
-const std::array<string, 4> lowleftarms = {"<", "" , "/", ""};
+const std::array<string, 4> lowleftarms = {"<", " " , "/", " "};
 const std::array<string, 4> torsos =  {" : ", "] [" ,  "> <", "   "};
 const std::array<string, 4> lowrightarms = {">", "", "\\", ""};
 // const std::array<string, 4> bases = {" : ", " ", "___", "   "};
@@ -75,7 +75,8 @@ namespace ariel{
         7 - base
         */
         sms = hats.at(sma[0]-1) + "\n" + 
-            upleftarms.at(sma.at(FOUR)-1) + '(' + lefteyes.at(sma[2] -1) + noses.at(sma[1]-1) + righteyes.at(sma[3]-1) + ')' + uprightarms.at(sma.at(FIVE)-1) + '\n'+
+            upleftarms.at(sma.at(FOUR)-1) + '(' + lefteyes.at(sma[2] -1) + noses.at(sma[1]-1) + 
+            righteyes.at(sma[3]-1) + ')' + uprightarms.at(sma.at(FIVE)-1) + '\n'+
             lowleftarms.at(sma.at(FOUR)-1) +  '(' + torsos.at(sma.at(SIX)-1) + ')'+ lowrightarms.at(sma.at(FIVE) -1) + '\n' +
             '(' + bases.at(sma.at(SEVEN)-1) + ')';
         
